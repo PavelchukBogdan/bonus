@@ -1,28 +1,30 @@
 package com.pavelchuk.bonus.controller;
 
-import com.pavelchuk.bonus.dto.CreateBonus;
+import com.pavelchuk.bonus.dto.CreateBonusDto;
 import com.pavelchuk.bonus.service.BonusService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @Api("Контроллер для работы с бонусами")
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/bonus")
 public class BonusController {
 
-    @Autowired
-    private BonusService bonusService;
+
+    private final BonusService bonusService;
 
     @ApiOperation(value = "Создание нового бонуса")
     @ApiResponse(code = 200, message = "Успешное создание")
     @PostMapping("/create")
-    public ResponseEntity<?> createBonus(@RequestBody CreateBonus bonus){
+    public ResponseEntity<?> createBonus(@Validated @RequestBody CreateBonusDto bonus){
         bonusService.createBonus(bonus);
         return ResponseEntity.ok().build();
     }

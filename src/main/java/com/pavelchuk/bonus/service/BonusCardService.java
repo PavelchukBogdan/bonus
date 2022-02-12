@@ -1,14 +1,18 @@
 package com.pavelchuk.bonus.service;
 
-import com.pavelchuk.bonus.dto.CreateBonusCard;
+import com.pavelchuk.bonus.dto.CreateBonusCardDto;
 
 import java.util.UUID;
 
 public interface BonusCardService {
 
-   void deleteBonusCard(UUID uuid);
+   void deleteBonusCardById(UUID uuid);
 
-   void blockedBonusCard(UUID uuid);
+   void deleteBonusCardByClientId(UUID clientId);
 
-   void createBonusCard(CreateBonusCard bonusCard);
+   void blockedBonusCardById(UUID uuid);
+
+   void blockedBonusCardByClientId(UUID clientId);
+
+   void createBonusCard(CreateBonusCardDto bonusCard);
 }

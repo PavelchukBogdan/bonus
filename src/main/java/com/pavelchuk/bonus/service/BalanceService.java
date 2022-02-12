@@ -8,7 +8,6 @@ import java.time.YearMonth;
 import java.util.List;
 import java.util.UUID;
 
-@Component
 public interface BalanceService {
 
     BigDecimal getBalance(UUID clientId, String code);

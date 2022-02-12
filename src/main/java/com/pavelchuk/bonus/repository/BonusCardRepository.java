@@ -1,24 +1,14 @@
 package com.pavelchuk.bonus.repository;
 
-import com.pavelchuk.bonus.dto.CreateBonusCard;
-import com.pavelchuk.bonus.dto.CreateClient;
+import com.pavelchuk.bonus.entity.BonusCard;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-public interface BonusCardRepository {
+@Component
+public interface BonusCardRepository extends JpaRepository<BonusCard, UUID> {
 
-    boolean existsByIdempotencyKey(UUID idempotencyKey);
-
-    int blockedClientCardByClientId(UUID uuid);
-
-    int blockedClientCardId(UUID uuid);
-
-    int deleteByClientId(UUID clientId);
-
-    int deleteById(UUID clientId);
-
-    void createBonusCard(CreateBonusCard bonusCard);
-
-
+    BonusCard findBonusCardByClientId(UUID clientId);
 
 }

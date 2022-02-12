@@ -1,13 +1,14 @@
 package com.pavelchuk.bonus.controller;
 
 
-import com.pavelchuk.bonus.dto.CreateClient;
+import com.pavelchuk.bonus.dto.CreateClientDto;
 import com.pavelchuk.bonus.service.ClientService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -25,7 +26,7 @@ public class ClientController {
     @ApiOperation(value = "Создание нового клиента ")
     @ApiResponse(code = 200, message = "Успешное создание")
     @PostMapping("/create")
-    public ResponseEntity<?> createClient(@RequestBody CreateClient dto) {
+    public ResponseEntity<?> createClient(@Validated @RequestBody CreateClientDto dto) {
         clientService.createClient(dto);
         return ResponseEntity.ok().build();
     }
@@ -42,7 +43,7 @@ public class ClientController {
    @ApiResponse(code = 200, message = "Успешная блокировка клиента")
    @PostMapping("/blocked")
   public ResponseEntity<?> blockedClient(@RequestParam UUID uuid) {
-      clientService.blockedById(uuid);
+      clientService.blockById(uuid);
        return ResponseEntity.ok().build();
     }
 

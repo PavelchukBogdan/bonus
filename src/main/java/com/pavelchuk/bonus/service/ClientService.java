@@ -1,18 +1,23 @@
 package com.pavelchuk.bonus.service;
 
-import com.pavelchuk.bonus.dto.CreateClient;
-import org.springframework.transaction.annotation.Transactional;
+import com.pavelchuk.bonus.dto.BonusDto;
+import com.pavelchuk.bonus.dto.CreateClientDto;
+import com.pavelchuk.bonus.entity.Bonus;
 
+import java.math.BigDecimal;
+import java.time.YearMonth;
+import java.util.List;
 import java.util.UUID;
 
 public interface ClientService {
 
     void deleteClient(UUID clientID);
 
-   void blockedById(UUID uuid);
+    void blockById(UUID uuid);
 
-    void createClient(CreateClient client);
+    void createClient(CreateClientDto client);
 
+    BigDecimal getBalance(UUID clientId, String code);
 
-
+    List<BonusDto> getBalanceByMonth(UUID clientId, String currency, YearMonth period);
 }

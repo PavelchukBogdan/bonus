@@ -1,7 +1,7 @@
 package com.pavelchuk.bonus.controller;
 
 
-import com.pavelchuk.bonus.service.BalanceService;
+import com.pavelchuk.bonus.service.ClientService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -22,7 +22,7 @@ import java.util.UUID;
 public class BalanceController {
 
 
-    private final BalanceService balanceService;
+    private final ClientService clientService;
 
 
     @ApiOperation(value = "Получение баланса")
@@ -30,7 +30,7 @@ public class BalanceController {
     @GetMapping("/total")
     public ResponseEntity<?> getBalance(@RequestParam UUID clientId,
                                         @RequestParam String currency) {
-        return ResponseEntity.ok(balanceService.getBalance(clientId, currency));
+        return ResponseEntity.ok(clientService.getBalance(clientId, currency));
     }
 
     @ApiOperation(value = "Детализация по бонусам за месяц")
@@ -39,6 +39,6 @@ public class BalanceController {
     public ResponseEntity<?> getBalanceByPeriod(@RequestParam UUID clientId,
                                                 @RequestParam String currency,
                                                 @RequestParam YearMonth period) {
-        return ResponseEntity.ok(balanceService.getBalanceByMonth(clientId, currency, period));
+        return ResponseEntity.ok(clientService.getBalanceByMonth(clientId, currency, period));
     }
 }
